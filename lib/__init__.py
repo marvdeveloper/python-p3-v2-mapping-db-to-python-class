@@ -1,5 +1,17 @@
-# lib/__init__.py
-import sqlite3
+from lib import CONN, CURSOR
 
-CONN = sqlite3.connect('company.db')
-CURSOR = CONN.cursor()
+class Department:
+    # ... your methods
+
+    @classmethod
+    def create_table(cls):
+        CURSOR.execute("""
+            CREATE TABLE IF NOT EXISTS departments (
+                id INTEGER PRIMARY KEY,
+                name TEXT,
+                location TEXT
+            )
+        """)
+        CONN.commit()
+
+    
